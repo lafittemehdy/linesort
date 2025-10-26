@@ -1,0 +1,71 @@
+{
+  "name": "linesort",
+  "displayName": "Line Sort",
+  "description": "Get your lines straight, all neat and alphabetically in one quick hit",
+  "version": "0.0.1",
+  "publisher": "lafittemehdy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lafittemehdy/linesort"
+  },
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Formatters",
+    "Other"
+  ],
+  "keywords": [
+    "alphabetize",
+    "format",
+    "lines",
+    "sort",
+    "text"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "linesort.alphabetize",
+        "title": "Alphabetize Selected Lines"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "linesort.alphabetize",
+        "key": "ctrl+alt+s",
+        "mac": "cmd+alt+s",
+        "when": "editorTextFocus && editorHasSelection"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "linesort.alphabetize",
+          "group": "1_modification",
+          "when": "editorHasSelection"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "lint": "eslint src",
+    "pretest": "pnpm run compile && pnpm run lint",
+    "test": "vscode-test",
+    "vscode:prepublish": "pnpm run compile",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.105.0",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.45.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.36.0",
+    "typescript": "^5.9.3"
+  }
+}

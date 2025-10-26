@@ -1,0 +1,13 @@
+.github/**
+.gitignore
+.npmrc
+.vscode/**
+.vscode-test/**
+.vscodeignore
+.yarnrc
+src/**
+**/.vscode-test.*
+**/eslint.config.mjs
+**/*.map
+**/*.ts
+**/tsconfig.json
