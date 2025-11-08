@@ -2,8 +2,9 @@
   "name": "linesort",
   "displayName": "Line Sort",
   "description": "Get your lines straight, all neat and alphabetically in one quick hit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "lafittemehdy",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/lafittemehdy/linesort"
@@ -28,7 +29,7 @@
     "commands": [
       {
         "command": "linesort.alphabetize",
-        "title": "Alphabetize Selected Lines"
+        "title": "Alphabetize Lines or Inline Elements"
       }
     ],
     "keybindings": [
@@ -36,15 +37,14 @@
         "command": "linesort.alphabetize",
         "key": "ctrl+alt+s",
         "mac": "cmd+alt+s",
-        "when": "editorTextFocus && editorHasSelection"
+        "when": "editorTextFocus"
       }
     ],
     "menus": {
       "editor/context": [
         {
           "command": "linesort.alphabetize",
-          "group": "1_modification",
-          "when": "editorHasSelection"
+          "group": "1_modification"
         }
       ]
     }
@@ -59,13 +59,13 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
-    "@types/node": "22.x",
+    "@types/node": "~22.19.0",
     "@types/vscode": "^1.105.0",
-    "@typescript-eslint/eslint-plugin": "^8.45.0",
-    "@typescript-eslint/parser": "^8.45.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.3",
+    "@typescript-eslint/parser": "^8.46.3",
     "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.5.2",
-    "eslint": "^9.36.0",
+    "eslint": "^9.39.1",
     "typescript": "^5.9.3"
   }
 }

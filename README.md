@@ -2,20 +2,24 @@
 
 [![CI](https://github.com/lafittemehdy/linesort/actions/workflows/ci.yml/badge.svg)](https://github.com/lafittemehdy/linesort/actions/workflows/ci.yml)
 
-Get your lines straight. Alphabetically, of course.
+Get your lines straight. Alphabetically, of course. One quick hit to sort multiple lines or elements within a single line.
 
 ## Usage
 
-Select your lines, then hit it:
-- `Ctrl+Alt+S` (or `Cmd+Alt+S` on Mac)
-- Right-click → "Alphabetize Selected Lines"
-- Command Palette → "Alphabetize Selected Lines"
+-   **Multi-line:** Select a block of text to sort each line alphabetically.
+-   **Inline:** Place your cursor on a line (or select part of it) to sort elements within that line.
 
-One quick hit and your lines are perfectly organized.
+Trigger the command via:
+-   `Ctrl+Alt+S` (or `Cmd+Alt+S` on Mac)
+-   Right-click → "Alphabetize Lines or Inline Elements"
+-   Command Palette → "Alphabetize Lines or Inline Elements"
 
-## Details
+## Features
 
-Sorts in ASCII order (case-sensitive):
+### Multi-line Sorting
+
+Sorts selected lines in case-sensitive ASCII order. Special characters, numbers, and uppercase letters come before lowercase letters.
+
 ```
 Before:          After:
 zebra            !exclaim
@@ -27,7 +31,25 @@ banana           @mention
 Banana           zebra
 ```
 
-Special characters, numbers, uppercase, lowercase: All your lines end up clean and organized. Pure sorting, no cutting corners.
+### Inline Element Sorting
+
+Automatically detects and sorts comma, semicolon, pipe, or space-separated lists on a single line.
+
+-   **Smart Detection:** Works with lists inside brackets `[]`, curly braces `{}`, parentheses `()`, and quotes `""` or `''`.
+-   **Prefix Preservation:** Keeps prefixes like `const arr =` intact.
+-   **Consistent Spacing:** Automatically normalizes spacing for clean, readable output.
+
+```
+// Before
+const tags = ['zebra', 'alpha', 'mango'];
+const values = '10, 5, 100, 1';
+const params = 'd|a|c|b';
+
+// After
+const tags = ['alpha', 'mango', 'zebra'];
+const values = '1, 10, 100, 5';
+const params = 'a | b | c | d';
+```
 
 ## Requirements
 
@@ -35,10 +57,20 @@ VS Code 1.105.0+
 
 ## Release Notes
 
+### 0.0.2
+
+Enhanced inline sorting with improved reliability:
+- **Inline element sorting** for comma, semicolon, pipe, and space-separated lists
+- **Smart auto-detection** - automatically chooses multi-line vs inline sorting
+- **Normalized spacing** for consistent, predictable output
+- **Empty element filtering** prevents malformed results
+- **Works without selection** - sorts current line when no text is selected
+- Improved delimiter detection and pattern matching
+
 ### 0.0.1
 
 Initial release. Straightens out your lines fast.
 
 ---
 
-MIT License 
+MIT License

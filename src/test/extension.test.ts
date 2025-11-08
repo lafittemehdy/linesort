@@ -97,4 +97,96 @@ suite('Line Sort Extension Tests', () => {
 		const expected = 'v\nw\nx\ny\nz';
 		await testAlphabetize(input, expected);
 	});
+
+	// ===== Inline Sorting Tests =====
+
+	test('Inline: comma-separated array with square brackets', async () => {
+		const input = "const arr = ['zebra', 'apple', 'mango']";
+		const expected = "const arr = ['apple', 'mango', 'zebra']";
+		await testAlphabetize(input, expected);
+	});
+
+	test('Inline: comma-separated with spacing preserved', async () => {
+		const input = 'colors = "red, blue, green, alpha"';
+		const expected = 'colors = "alpha, blue, green, red"';
+		await testAlphabetize(input, expected);
+	});
+
+	test('Inline: comma-separated without spaces', async () => {
+		const input = 'tags: z,a,m,b';
+		const expected = 'tags: a, b, m, z';
+		await testAlphabetize(input, expected);
+	});
+
+	test('Inline: semicolon-separated elements', async () => {
+		const input = 'path: /usr/bin; /home/user; /etc; /var';
+		const expected = 'path: /etc; /home/user; /usr/bin; /var';
+		await testAlphabetize(input, expected);
+	});
+
+	test('Inline: pipe-separated elements', async () => {
+		const input = 'tags: python | javascript | rust | go';
+		const expected = 'tags: go | javascript | python | rust';
+		await testAlphabetize(input, expected);
+	});
+
+	test('Inline: curly braces with comma separation', async () => {
+		const input = 'obj = {zebra, apple, mango}';
+		const expected = 'obj = {apple, mango, zebra}';
+		await testAlphabetize(input, expected);
+	});
+
+	test('Inline: parentheses with comma separation', async () => {
+		const input = 'function foo(z, a, m, b)';
+		const expected = 'function foo(a, b, m, z)';
+		await testAlphabetize(input, expected);
+	});
+
+	test('Inline: already sorted elements remain unchanged', async () => {
+		const input = "arr = ['a', 'b', 'c']";
+		const expected = "arr = ['a', 'b', 'c']";
+		await testAlphabetize(input, expected);
+	});
+
+	test('Inline: single element remains unchanged', async () => {
+		const input = "arr = ['single']";
+		const expected = "arr = ['single']";
+		await testAlphabetize(input, expected);
+	});
+
+	test('Inline: elements with numbers', async () => {
+		const input = 'items: item3, item1, item2, item10';
+		const expected = 'items: item1, item10, item2, item3';
+		await testAlphabetize(input, expected);
+	});
+
+	test('Inline: mixed case sensitivity in inline elements', async () => {
+		const input = "['Zebra', 'apple', 'Mango', 'banana']";
+		const expected = "['Mango', 'Zebra', 'apple', 'banana']";
+		await testAlphabetize(input, expected);
+	});
+
+	test('Inline: preserves prefix and suffix', async () => {
+		const input = 'const colors = [red, blue, green] as const;';
+		const expected = 'const colors = [blue, green, red] as const;';
+		await testAlphabetize(input, expected);
+	});
+
+	test('Inline: double-quoted elements', async () => {
+		const input = '["zebra", "apple", "mango"]';
+		const expected = '["apple", "mango", "zebra"]';
+		await testAlphabetize(input, expected);
+	});
+
+	test('Inline: single-quoted elements', async () => {
+		const input = "['zebra', 'apple', 'mango']";
+		const expected = "['apple', 'mango', 'zebra']";
+		await testAlphabetize(input, expected);
+	});
+
+	test('Inline: elements without brackets', async () => {
+		const input = 'colors: red, blue, green';
+		const expected = 'colors: blue, green, red';
+		await testAlphabetize(input, expected);
+	});
 });
