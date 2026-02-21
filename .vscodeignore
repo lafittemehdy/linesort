@@ -5,6 +5,8 @@
 .vscode-test/**
 .vscodeignore
 .yarnrc
+out/test/**
+pnpm-lock.yaml
 src/**
 **/.vscode-test.*
 **/eslint.config.mjs

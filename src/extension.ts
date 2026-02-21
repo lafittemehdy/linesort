@@ -220,13 +220,5 @@ function sortInlineElements(text: string, delimiter: string): string {
  * @returns Sorted array of strings
  */
 function sortLinesAscii(lines: string[]): string[] {
-	return [...lines].sort((a, b) => {
-		if (a < b) {
-			return -1;
-		}
-		if (a > b) {
-			return 1;
-		}
-		return 0;
-	});
+	return [...lines].sort();
 }

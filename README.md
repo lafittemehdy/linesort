@@ -1,4 +1,4 @@
-# Line Sort
+﻿# Line Sort
 
 [![CI](https://github.com/lafittemehdy/linesort/actions/workflows/ci.yml/badge.svg)](https://github.com/lafittemehdy/linesort/actions/workflows/ci.yml)
 
@@ -11,8 +11,8 @@ Get your lines straight. Alphabetically, of course. One quick hit to sort multip
 
 Trigger the command via:
 -   `Ctrl+Alt+S` (or `Cmd+Alt+S` on Mac)
--   Right-click → "Alphabetize Lines or Inline Elements"
--   Command Palette → "Alphabetize Lines or Inline Elements"
+-   Right-click -> "Alphabetize Lines or Inline Elements"
+-   Command Palette -> "Alphabetize Lines or Inline Elements"
 
 ## Features
 
@@ -53,9 +53,16 @@ const params = 'a | b | c | d';
 
 ## Requirements
 
-VS Code 1.105.0+
+VS Code 1.109.0+
 
 ## Release Notes
+
+### 0.0.3
+
+Quality and release hardening update:
+- Simplified ASCII sort implementation while keeping output behavior unchanged
+- Added stricter TypeScript checks for stronger static validation
+- Updated CI/release packaging flow to enforce pretest + extension tests before publish
 
 ### 0.0.2
 

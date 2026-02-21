@@ -2,7 +2,8 @@
   "name": "linesort",
   "displayName": "Line Sort",
   "description": "Get your lines straight, all neat and alphabetically in one quick hit",
-  "version": "0.0.2",
+  "icon": "assets/icon.png",
+  "version": "0.0.3",
   "publisher": "lafittemehdy",
   "license": "MIT",
   "repository": {
@@ -10,7 +11,7 @@
     "url": "https://github.com/lafittemehdy/linesort"
   },
   "engines": {
-    "vscode": "^1.105.0"
+    "vscode": "^1.109.0"
   },
   "categories": [
     "Formatters",
@@ -23,7 +24,19 @@
     "sort",
     "text"
   ],
+  "badges": [
+    {
+      "url": "https://github.com/lafittemehdy/linesort/actions/workflows/ci.yml/badge.svg",
+      "href": "https://github.com/lafittemehdy/linesort/actions/workflows/ci.yml",
+      "description": "CI status"
+    }
+  ],
+  "galleryBanner": {
+    "color": "#101010",
+    "theme": "dark"
+  },
   "activationEvents": [],
+  "browser": "./out/web/extension.js",
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -50,22 +63,25 @@
     }
   },
   "scripts": {
-    "compile": "tsc -p ./",
+    "compile": "pnpm run compile:node && pnpm run compile:web",
+    "compile:node": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --sourcemap",
+    "compile:web": "esbuild src/extension.ts --bundle --outfile=out/web/extension.js --external:vscode --format=cjs --platform=browser --sourcemap",
     "lint": "eslint src",
-    "pretest": "pnpm run compile && pnpm run lint",
+    "pretest": "tsc -p ./ && pnpm run lint",
     "test": "vscode-test",
-    "vscode:prepublish": "pnpm run compile",
-    "watch": "tsc -watch -p ./"
+    "vscode:prepublish": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --minify && esbuild src/extension.ts --bundle --outfile=out/web/extension.js --external:vscode --format=cjs --platform=browser --minify",
+    "watch": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --sourcemap --watch"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
-    "@types/node": "~22.19.0",
-    "@types/vscode": "^1.105.0",
-    "@typescript-eslint/eslint-plugin": "^8.46.3",
-    "@typescript-eslint/parser": "^8.46.3",
+    "@types/node": "~22.19.11",
+    "@types/vscode": "^1.109.0",
     "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.5.2",
-    "eslint": "^9.39.1",
-    "typescript": "^5.9.3"
+    "@vscode/vsce": "^3.7.1",
+    "esbuild": "^0.27.3",
+    "eslint": "^9.39.3",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.0"
   }
 }

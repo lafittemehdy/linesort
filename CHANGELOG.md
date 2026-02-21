@@ -2,6 +2,14 @@
 
 All notable changes to Line Sort.
 
+## [0.0.3] - 2026-02-21
+
+### Changed
+- Simplified ASCII line sorting implementation by using the default string sort behavior.
+- Enabled additional TypeScript quality checks: `noImplicitReturns`, `noFallthroughCasesInSwitch`, and `noUnusedParameters`.
+- Updated CI/release workflows and packaging scripts to use Node.js 22, local `vsce` execution, and stricter release validation gates.
+- Added Marketplace metadata with extension icon, CI badge, and a monochrome gallery banner theme.
+
 ## [0.0.2] - 2025-11-08
 
 ### Added
