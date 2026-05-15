@@ -4,6 +4,7 @@
   "description": "Get your lines straight, all neat and alphabetically in one quick hit",
   "icon": "assets/icon.png",
   "version": "0.0.3",
+  "packageManager": "pnpm@11.1.2",
   "publisher": "lafittemehdy",
   "license": "MIT",
   "repository": {
@@ -11,7 +12,7 @@
     "url": "https://github.com/lafittemehdy/linesort"
   },
   "engines": {
-    "vscode": "^1.109.0"
+    "vscode": "^1.120.0"
   },
   "categories": [
     "Formatters",
@@ -74,14 +75,14 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
-    "@types/node": "~22.19.11",
-    "@types/vscode": "^1.109.0",
-    "@vscode/test-cli": "^0.0.11",
+    "@types/node": "~25.8.0",
+    "@types/vscode": "^1.120.0",
+    "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
-    "@vscode/vsce": "^3.7.1",
-    "esbuild": "^0.27.3",
-    "eslint": "^9.39.3",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.0"
+    "@vscode/vsce": "^3.9.1",
+    "esbuild": "^0.28.0",
+    "eslint": "^10.3.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.3"
   }
 }

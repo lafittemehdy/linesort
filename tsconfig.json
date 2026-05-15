@@ -8,6 +8,11 @@
 		],
 		"sourceMap": true,
 		"rootDir": "src",
+		"types": [
+			"node",
+			"mocha",
+			"vscode"
+		],
 		"strict": true,
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitReturns": true,
