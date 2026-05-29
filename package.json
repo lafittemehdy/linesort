@@ -3,7 +3,7 @@
   "displayName": "Line Sort",
   "description": "Get your lines straight, all neat and alphabetically in one quick hit",
   "icon": "assets/icon.png",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "packageManager": "pnpm@11.1.2",
   "publisher": "lafittemehdy",
   "license": "MIT",
