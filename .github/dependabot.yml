@@ -1,3 +1,4 @@
+# Declares dependency update policy and registry boundaries for automated supply-chain changes.
 version: 2
 updates:
   - package-ecosystem: "github-actions"
@@ -25,4 +26,11 @@ updates:
         update-types:
           - "minor"
           - "patch"
+    ignore:
+      # @types/vscode is the extension API contract and must move with engines.vscode.
+      - dependency-name: "@types/vscode"
+        update-types:
+          - "version-update:semver-major"
+          - "version-update:semver-minor"
+          - "version-update:semver-patch"
     open-pull-requests-limit: 5

@@ -1,3 +1,4 @@
+# Converts verified dependency merges into version tags without publishing unvalidated artifacts.
 name: Auto Release
 
 on:
@@ -31,7 +32,7 @@ jobs:
           fi
 
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           ref: ${{ github.ref_name }}
@@ -44,10 +45,13 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24.x
-          package-manager-cache: false
+          cache: pnpm
 
       - name: Sync branch
         run: git pull --ff-only origin "${GITHUB_REF_NAME}"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Configure git
         run: |
@@ -61,6 +65,13 @@ jobs:
           pnpm install --lockfile-only
           VERSION="v$(node -p "require('./package.json').version")"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Validate release candidate
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm run pretest
+          pnpm run compile
+          pnpm exec vsce package --no-dependencies --out /tmp/linesort-auto-release.vsix
 
       - name: Commit and tag version bump
         run: |

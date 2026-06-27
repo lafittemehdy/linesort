@@ -1,3 +1,4 @@
+# Defines workspace membership, native-build allowlists, and transitive security overrides.
 packages:
   - .
 allowBuilds:
@@ -18,4 +19,4 @@ overrides:
   picomatch@<2.3.2: 2.3.2
   picomatch@>=4.0.0 <4.0.4: 4.0.4
   serialize-javascript@<7.0.5: 7.0.5
-  undici@>=7.0.0 <7.24.0: 7.25.0
+  undici@>=7.0.0 <7.28.0: 7.28.0

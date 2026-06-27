@@ -1,3 +1,4 @@
+# Defines the CI transition system: tests establish behavior and packaging validates release artifacts.
 name: CI
 
 on:
@@ -21,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
@@ -41,20 +42,26 @@ jobs:
       - name: Compile TypeScript
         run: pnpm run compile
 
-      - name: Run tests
-        uses: coactions/setup-xvfb@v1
-        with:
-          run: pnpm test
+      - name: Install Linux display dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y xvfb x11-xserver-utils
+
+      - name: Run tests (Linux)
+        if: runner.os == 'Linux'
+        run: xvfb-run --auto-servernum pnpm test
+
+      - name: Run tests (non-Linux)
+        if: runner.os != 'Linux'
+        run: pnpm test
 
   package:
     name: Package extension
     runs-on: ubuntu-latest
     needs: test
-    if: github.event_name == 'push'
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
@@ -86,7 +93,7 @@ jobs:
       - name: Verify required jobs
         run: |
           for result in "${{ needs.test.result }}" "${{ needs.package.result }}"; do
-            if [ "$result" != "success" ] && [ "$result" != "skipped" ]; then
+            if [ "$result" != "success" ]; then
               echo "CI did not pass."
               exit 1
             fi
