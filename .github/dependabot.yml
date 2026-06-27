@@ -1,3 +1,4 @@
+# Declares dependency update policy and registry boundaries for automated supply-chain changes.
 version: 2
 updates:
   - package-ecosystem: "github-actions"
@@ -20,9 +21,20 @@ updates:
     labels:
       - "dependencies"
     versioning-strategy: "increase"
+    cooldown:
+      # pnpm verifies minimum package age during frozen installs, so same-day npm updates are not admissible CI inputs.
+      semver-minor-days: 1
+      semver-patch-days: 1
     groups:
       npm-minor-and-patch:
         update-types:
           - "minor"
           - "patch"
+    ignore:
+      # @types/vscode is the extension API contract and must move with engines.vscode.
+      - dependency-name: "@types/vscode"
+        update-types:
+          - "version-update:semver-major"
+          - "version-update:semver-minor"
+          - "version-update:semver-patch"
     open-pull-requests-limit: 5
